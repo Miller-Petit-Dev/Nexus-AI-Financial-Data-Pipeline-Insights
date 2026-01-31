@@ -2,6 +2,14 @@
 
 # 🚀 Nexus AI — Financial Data Infrastructure & AI Enrichment Engine
 ### *Middleware profesional para Trading Cuantitativo y Sistemas Algorítmicos*
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Docker](https://img.shields.io/badge/docker-enabled-blue.svg)](https://www.docker.com/)
+[![PostgreSQL](https://img.shields.io/badge/postgresql-supported-blue.svg)](https://www.postgresql.org/)
+[![Redis](https://img.shields.io/badge/redis-streams-red.svg)](https://redis.io/)
+[![Architecture](https://img.shields.io/badge/architecture-event--driven-purple.svg)]()
+[![Domain Driven Design](https://img.shields.io/badge/design-DDD-lightgrey.svg)]()
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)]()
+[![Status](https://img.shields.io/badge/status-architecture--stable-brightgreen.svg)]()
 
 ---
 
@@ -160,6 +168,15 @@ Uso destinado a:
 ✔ Desarrollo  
 ✔ Educación  
 ✔ Infraestructura cuantitativa  
+
+---
+## 📄 Licencia
+
+Copyright © 2026 **LIA Engineering Solutions**
+
+Todos los derechos reservados.
+
+Permitido para uso educativo y de investigación.
 
 ---
 
