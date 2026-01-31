@@ -1,0 +1,127 @@
+NEXUS AI — GUÍA DE INSTALACIÓN LOCAL (PASO A PASO, PRINCIPIANTE)
+
+Objetivo:
+Levantar Nexus AI en una computadora local para pruebas internas.
+No se requieren conocimientos previos de programación.
+
+====================================================================
+1) QUÉ ES LO QUE VAS A LEVANTAR
+====================================================================
+Al finalizar vas a tener corriendo automáticamente:
+
+- Redis → streaming de datos en tiempo real
+- PostgreSQL → base de datos histórica
+- mock-ws → servidor WebSocket que simula mercado
+- ingestor → ingesta asíncrona de datos
+- processor → limpieza, detección de anomalías y persistencia
+
+Todo corre con Docker.
+
+====================================================================
+2) REQUISITOS (ÚNICO OBLIGATORIO)
+====================================================================
+- Docker Desktop (incluye Docker Compose)
+
+Nada más.
+
+--------------------------------------------------------------------
+WINDOWS / MAC
+--------------------------------------------------------------------
+1) Descargar Docker Desktop desde el sitio oficial de Docker
+2) Instalar y abrir Docker Desktop
+3) Esperar que indique “Running”
+
+--------------------------------------------------------------------
+LINUX
+--------------------------------------------------------------------
+Instalar Docker Engine y Docker Compose desde la documentación oficial.
+
+Verificar:
+docker --version
+docker compose version
+
+====================================================================
+3) DESCARGAR EL PROYECTO
+====================================================================
+Opción recomendada:
+- Descargar el ZIP
+- Descomprimir la carpeta nexus-ai en un lugar conocido
+
+Ejemplos:
+Windows: C:\proyectos\nexus-ai
+Mac: ~/Downloads/nexus-ai
+Linux: ~/proyectos/nexus-ai
+
+====================================================================
+4) ABRIR UNA TERMINAL
+====================================================================
+Windows: PowerShell
+Mac / Linux: Terminal
+
+====================================================================
+5) ENTRAR A LA CARPETA DEL PROYECTO
+====================================================================
+Ejemplos:
+
+Windows:
+cd C:\proyectos\nexus-ai
+
+Mac:
+cd ~/Downloads/nexus-ai
+
+Linux:
+cd ~/proyectos/nexus-ai
+
+Confirmar:
+dir  (Windows)
+ls   (Mac/Linux)
+
+Debe verse:
+docker-compose.yml
+README.md
+LEEME.txt
+src/
+docker/
+
+====================================================================
+6) LEVANTAR TODO EL SISTEMA
+====================================================================
+Ejecutar:
+
+docker compose up --build
+
+La primera vez puede tardar varios minutos.
+
+NO cerrar esta terminal.
+
+====================================================================
+7) VERIFICAR QUE FUNCIONA
+====================================================================
+
+REDIS:
+docker exec -it $(docker ps -qf name=redis) redis-cli
+
+Dentro:
+XRANGE raw:ticks - + COUNT 3
+XRANGE clean:ticks - + COUNT 3
+
+POSTGRES:
+docker exec -it $(docker ps -qf name=postgres) psql -U postgres -d nexus
+
+Dentro:
+SELECT * FROM ticks_clean LIMIT 5;
+
+====================================================================
+8) DETENER TODO
+====================================================================
+CTRL + C en la terminal principal
+
+Luego:
+docker compose down
+
+Para borrar datos:
+docker compose down -v
+
+====================================================================
+FIN
+====================================================================

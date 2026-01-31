@@ -1,0 +1,76 @@
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nexus
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql:ro
+
+  mock-ws:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: ["python", "-m", "nexus_ai.apps.mock_ws.server"]
+    environment:
+      LOG_LEVEL: INFO
+    depends_on:
+      - redis
+      - postgres
+    ports:
+      - "8765:8765"
+
+  ingestor:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: ["python", "-m", "nexus_ai.apps.ingestor.main"]
+    environment:
+      APP_ENV: local
+      LOG_LEVEL: INFO
+      WS_URL: ws://mock-ws:8765
+      REDIS_URL: redis://redis:6379/0
+      REDIS_STREAM_TICKS: raw:ticks
+      REDIS_STREAM_MAXLEN: "200000"
+    depends_on:
+      - redis
+      - mock-ws
+
+  processor:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: ["python", "-m", "nexus_ai.apps.processor.main"]
+    environment:
+      APP_ENV: local
+      LOG_LEVEL: INFO
+      REDIS_URL: redis://redis:6379/0
+      PG_DSN: postgresql://postgres:postgres@postgres:5432/nexus
+      REDIS_STREAM_TICKS: raw:ticks
+      REDIS_STREAM_NEWS: raw:news
+      TICKS_GROUP: ticks-group
+      TICKS_CONSUMER: ticks-consumer-1
+      NEWS_GROUP: news-group
+      NEWS_CONSUMER: news-consumer-1
+      ANOMALY_Z_WINDOW: "60"
+      ANOMALY_Z_THRESHOLD: "4.0"
+      FINBERT_MODEL_ID: ProsusAI/finbert
+    depends_on:
+      - redis
+      - postgres
+
+volumes:
+  redis_data:
+  pg_data:

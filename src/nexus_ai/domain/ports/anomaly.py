@@ -1,0 +1,9 @@
+from __future__ import annotations
+
+from typing import Protocol, Optional
+
+
+class AnomalyDetector(Protocol):
+    def update(self, x: float) -> None: ...
+    def score(self, x: float) -> Optional[float]: ...
+    def is_anomaly(self, x: float) -> bool: ...
