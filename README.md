@@ -1,3 +1,5 @@
+![Banner](./NexusAiBanner.png)
+
 # 🚀 Nexus AI — Financial Data Infrastructure & AI Enrichment Engine
 ### *Middleware profesional para Trading Cuantitativo y Sistemas Algorítmicos*
 
@@ -71,7 +73,7 @@ Market Data / News
 
 ---
 
-## 🧬 Arquitectura (nivel ingeniería senior)
+## 🧬 Arquitectura 
 Nexus AI sigue **Clean Architecture + principios SOLID**, con desacoplamiento total:
 
 - **Domain** → modelos canónicos + contratos (ports)
@@ -161,12 +163,18 @@ Uso destinado a:
 
 ---
 
-## 🔗 Navegación de Portafolio
-👉 **Volver al Home**  
-👉 **Proyecto anterior: LIA Quantitative Execution Framework**  
-👉 **Siguiente proyecto: (próximamente)**  
-
----
-
 **LIA Engineering Solutions**  
 *Acelerando decisiones, diseño y ejecución.*
+
+---
+## 🔗 Navegación
+
+<p align="center">
+  <a href="https://github.com/miller-petit-dev/LIA-Quantitative-Execution-Framework">
+    <img src="https://img.shields.io/badge/Ir_a_LIA-LIA_CORE-0078D4?style=for-the-badge&logo=quantconnect&logoColor=white" alt="LIA CORE System">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/Miller-Petit-Dev">
+    <img src="https://img.shields.io/badge/Volver_al_Home-Portfolio-333333?style=for-the-badge&logo=github&logoColor=white" alt="Volver al Home">
+  </a>
+</p>
