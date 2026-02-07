@@ -191,6 +191,10 @@ Permitido para uso educativo y de investigación.
     <img src="https://img.shields.io/badge/Ir_a_LIA-LIA_CORE-0078D4?style=for-the-badge&logo=quantconnect&logoColor=white" alt="LIA CORE System">
   </a>
   &nbsp;&nbsp;
+  <a href="https://github.com/Miller-Petit-Dev/aurum-edge">
+    <img src="https://img.shields.io/badge/Ir_a_Aurum-AURUM_EDGE-D4AF37?style=for-the-badge&logo=bitcoin&logoColor=black" alt="Ir a Aurum">
+  </a>
+  &nbsp;&nbsp;
   <a href="https://github.com/Miller-Petit-Dev">
     <img src="https://img.shields.io/badge/Volver_al_Home-Portfolio-333333?style=for-the-badge&logo=github&logoColor=white" alt="Volver al Home">
   </a>
